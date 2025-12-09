@@ -7,12 +7,13 @@ Projet pour l'option prototypage de mon école. Je veux créer un petit véhicul
 **Management**
 - [-] Définition du besoin
 - [ ] Création du cahier des charges
-- [ ] Analyse fonctionnelle
+    - [ ] Analyse fonctionnelle
+    - [ ] Planning prévisionnel
 - [ ] WBS
 - [ ] Mise en place du Gantt
+- [ ] Commande du matériel
 
 **Réalisation physique**
-- [ ] Commande du matériel
 - [ ] Réflexion sur la partie direction du véhicule (une bille a l'avant et direction avec un differentiel de rotation dans les roues arrieres)
 - [ ] Conception 3D
 - [ ] Fabrication
