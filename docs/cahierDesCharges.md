@@ -32,7 +32,20 @@ L'interface devra être accessible sur le web pour éviter toutes installations 
 
 ## 3. Spécifications techniques
 
+Matériel:
+|Nom|Référence|Quantité|
+|-|-|-|
+|Motor driver|L298n|1|
+|DC motor|JGA25-370 280tr/min|2|
+|Lipo battery| |1|
+|Régulateur de courant| |1|
+|Planche en bois pour le chassis| |1|
+|Roues|Lego: 4198613|3|
+|Jetson Nano|Jetson Nano 4Gb|1|
+|Raspberry Pi Camera|Pi Camera V2.1|1|
+|USB Wifi Dongle| |1|
 
+Le véhicule devra pouvoir suivre une cible pendant au moins 5 minutes à une vitesse de 5 km/h (vitesse moyenne de marche d'un humain), il devra pouvoir éviter les obstacles et retrouver sa cible.
 
 ## 4. Contraintes du projet
 
@@ -47,3 +60,4 @@ L'interface devra être accessible sur le web pour éviter toutes installations 
 
 
 ## 7. Documents annexes
+

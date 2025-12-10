@@ -2,12 +2,19 @@
 
 Projet pour l'option prototypage de mon école. Je veux créer un petit véhicule électrique (style voiture radiocommandé) avec une carte jetson nano et une caméra pi dans le but de faire de la reconnaissance d'objet pour suivre une cible. La jetson hostera aussi un serveur web contenant un retour caméra ainsi que des controles pour le véhicule.
 
+## A discuter avec Jocelyn
+
+- Est ce que j'utilise mon budget ? Budget CESI.
+- Est ce que je peux utiliser une Lipo pour alimenter la jetson avec un régulateur de courant et les moteurs. Oui
+- Est ce que je fais une archi monolithe ? Est ce que je sépars le serveur web, et le soft de controle du véhicule. Monolithe (dire dans le rapport technique que séparer les services est préferable)
+- Est ce que le schéma électronique semble correct ? Oui
+
 ## To do list
 
 **Management**
-- [-] Définition du besoin
-- [ ] Création du cahier des charges
-    - [ ] Analyse fonctionnelle
+- [x] Définition du besoin
+- [-] Création du cahier des charges
+    - [-] Analyse fonctionnelle
     - [ ] Planning prévisionnel
 - [ ] WBS
 - [ ] Mise en place du Gantt
