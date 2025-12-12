@@ -16,7 +16,7 @@ Projet pour l'option prototypage de mon école. Je veux créer un petit véhicul
 - [x] Création du cahier des charges
     - [x] Analyse fonctionnelle
     - [x] Planning prévisionnel
-- [ ] Commande du matériel
+- [-] Commande du matériel
 - [ ] WBS
 - [ ] Mise en place du Gantt
 - [ ] Budget

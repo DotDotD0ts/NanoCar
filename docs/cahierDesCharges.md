@@ -35,15 +35,15 @@ L'interface devra être accessible sur le web pour éviter toutes installations 
 Matériel:
 |Nom|Référence|Quantité|
 |-|-|-|
-|Motor driver|L298n|1|
-|DC motor|JGA25-370 280tr/min|2|
-|Lipo battery| |1|
-|Régulateur de courant| |1|
+|Motor driver|sabertooth 2x25|1|
+|DC motor|313 RPM HD Premium Planetary Gear Motor w/Encoder|2|
+|Lipo battery|4s, 13.4V 4200mAh|1|
+|Régulateur de courant|DFR0946|1|
 |Planche en bois pour le chassis| |1|
 |Roues| |3|
 |Jetson Nano|Jetson Nano 4Gb|1|
 |Raspberry Pi Camera|Pi Camera V2.1|1|
-|USB Wifi Dongle| |1|
+|USB Wifi Dongle| Adaptateur Wi-Fi TP-LINK Archer T2U Nano USB 2.0 600 MBit/s|1|
 
 Le véhicule devra pouvoir suivre une cible pendant au moins 5 minutes à une vitesse de 5 km/h (vitesse moyenne de marche d'un humain), il devra pouvoir éviter les obstacles et retrouver sa cible.
 
