@@ -40,7 +40,7 @@ Matériel:
 |Lipo battery| |1|
 |Régulateur de courant| |1|
 |Planche en bois pour le chassis| |1|
-|Roues|Lego: 4198613|3|
+|Roues| |3|
 |Jetson Nano|Jetson Nano 4Gb|1|
 |Raspberry Pi Camera|Pi Camera V2.1|1|
 |USB Wifi Dongle| |1|
@@ -49,15 +49,44 @@ Le véhicule devra pouvoir suivre une cible pendant au moins 5 minutes à une vi
 
 ## 4. Contraintes du projet
 
+Le projet est financé par le CESI avec un budget maximum de 150 eur. Certains des matériaux (comme la caméra pi, les roues, le bois, ...) sont déjà présent au CESI et ne seront pas dédui de ce budget. La carte Jetson Nano sera fourni par mes soins et récupéré à la fin du projet.
 
+Dans un premier temps, le chassis du véhicule sera fait à partir d'une planche en bois découpé à l'aide de la CNC.
+
+Les commandes devront être effectué avant le mercredi 17 décembre pour prendre en compte le temps de traitement et de livraison de celles-ci.
+Enfin, le projet devra être rendu le 30 janvier 2026, jour de la soutenance.
+Un rapport contenant le cahier des charges ainsi qu'une documentation technique et utilisateur devra être rendu à la même date.
 
 ## 5. Critères de validation
 
+Pour assurer le bon respect de ce cahier des charges, les tests suivants devront être validé :
+- Le véhicule se déplace au moins à 3km/h
+- Le véhicule peut se déplacer pendant au moins 5 minutes
+- Le véhicule peut suivre une cible malgrès des obstacles sur son chemin
+- Le véhicule doit être mise en fonctionnement par une personne ayant le manuel utilisateur
+- Le véhicule doit être contrôlable en mode manuel par une personne non formé
+- Le flux vidéo est fluide (>24.99 fps)
 
+Pour suivre l'avancement du projet, plusieurs KPI peuvent être mis en place :
+- Utilisation du budget (budget dépensé / budget total)
+- Pourcentage des tâches du WBS terminées
+- Nombres de systèmes individuels validés
+
+Enfin, pour valider le projet, les indicateurs suivants seront utilisés :
+- Latence <300ms entre le flux vidéos et la réalité
+- Durée de fonctionnement >5min
+- Vitesse >3km/h
+- Un utilisateur qui n'a jamais utilisé le projet peut le mettre en fonctionnement en <10min
 
 ## 6. Planning prévisionnel
 
+![Planning prévisionnel](../images/planningPrevisionnel.png)
 
+Les deadlines importantes sont :
+- 17/12/2025: Fin des premières commandes
+- 16/01/2026: Assemblage final
+- 21/01/2026: Tests d'intégration
+- 30/01/2026: Soutenance final
 
 ## 7. Documents annexes
 

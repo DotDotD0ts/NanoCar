@@ -13,19 +13,19 @@ Projet pour l'option prototypage de mon école. Je veux créer un petit véhicul
 
 **Management**
 - [x] Définition du besoin
-- [-] Création du cahier des charges
-    - [-] Analyse fonctionnelle
-    - [ ] Planning prévisionnel
+- [x] Création du cahier des charges
+    - [x] Analyse fonctionnelle
+    - [x] Planning prévisionnel
+- [ ] Commande du matériel
 - [ ] WBS
 - [ ] Mise en place du Gantt
-- [ ] Commande du matériel
+- [ ] Budget
 
 **Réalisation physique**
 - [ ] Réflexion sur la partie direction du véhicule (une bille a l'avant et direction avec un differentiel de rotation dans les roues arrieres)
 - [ ] Conception 3D
 - [ ] Fabrication
 - [ ] Assemblage
-- [ ] Budget
 
 **Réalisation logiciel**
 - [ ] Mise en place d'un serveur web hoster sur la jetson nano
