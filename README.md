@@ -1,7 +1,7 @@
 # NanoCar
 
 Projet pour l'option prototypage de mon école. Je veux créer un petit véhicule électrique (style voiture radiocommandé) avec une carte jetson nano et une caméra pi dans le but de faire de la reconnaissance d'objet pour suivre une cible. La jetson hostera aussi un serveur web contenant un retour caméra ainsi que des controles pour le véhicule.
-Le prototype sera développé en Python pour un dévelopement rapide et fonctionnel.
+Le prototype sera développé en Python pour un dévelopement rapide et fonctionnel. test
 
 ## To do list
 
