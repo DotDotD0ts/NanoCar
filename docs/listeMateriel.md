@@ -9,6 +9,8 @@
 |5|Jetson Nano|Jetson Nano 4Gb|250 eur|1|250 eur|
 |6|Raspberry Pi Camera|Pi camera v2.1|15 eur|1|15 eur|
 |7|Wifi dongle|Adaptateur Wi-Fi TP-LINK Archer T2U Nano USB 2.0 600 MBit/s|10.83 eur|1|10.83 eur|
+|8|Câble d'alimentation 5V4A| | |1| |
+|9|Connecteurs de batterie LiPo|Connecteur male + femelle| |1| |
 | |Total| | | | |
 
 Liens : 

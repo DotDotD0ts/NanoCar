@@ -17,18 +17,28 @@ Projet pour l'option prototypage de mon école. Je veux créer un petit véhicul
     - [x] Analyse fonctionnelle
     - [x] Planning prévisionnel
 - [-] Commande du matériel
-- [ ] WBS
+- [-] WBS (voir to do list)
 - [ ] Mise en place du Gantt
-- [ ] Budget
+- [-] Budget
 
 **Réalisation physique**
-- [ ] Réflexion sur la partie direction du véhicule (une bille a l'avant et direction avec un differentiel de rotation dans les roues arrieres)
-- [ ] Conception 3D
+- [x] Réflexion sur la partie direction du véhicule (une bille a l'avant et direction avec un differentiel de rotation dans les roues arrieres)
+- [-] Conception 3D
+    - [x] Jetson nano
+    - [x] LiPo
+    - [x] Moteur
+    - [x] Driver
+    - [x] Raspberry camera
+    - [x] Regulateur
+    - [ ] Roue avant
+    - [ ] Chassis
+    - [ ] Supports pour l'assemblage
+    - [ ] Assemblage de la conception 3D
 - [ ] Fabrication
 - [ ] Assemblage
 
 **Réalisation logiciel**
-- [ ] Mise en place d'un serveur web hoster sur la jetson nano
+- [ ] Mise en place d'un websocket sur la jetson nano
 - [ ] Création de l'interface utilisateur
 - [ ] Mise en place du flux vidéo
 - [ ] Mise en place des contrôles manuels
