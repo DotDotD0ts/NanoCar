@@ -7,9 +7,10 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 
 **Management**
 - [x] Définition du besoin
-- [x] Création du cahier des charges
+- [-] Création du cahier des charges
     - [x] Analyse fonctionnelle
     - [x] Planning prévisionnel
+    - [ ] Diagramme fast
 - [-] Commande du matériel
 - [-] WBS (a mettre au propre)
 - [x] Mise en place du Gantt
