@@ -43,7 +43,7 @@ Matériel:
 |Roues| |3|
 |Jetson Nano|Jetson Nano 4Gb|1|
 |Raspberry Pi Camera|Pi Camera V2.1|1|
-|USB Wifi Dongle| Adaptateur Wi-Fi TP-LINK Archer T2U Nano USB 2.0 600 MBit/s|1|
+|USB Wifi Dongle| Clé Wi-Fi USB 2.0 RF Solutions, 802.11b, 802.11g, 802.11n|1|
 
 Le véhicule devra pouvoir suivre une cible pendant au moins 5 minutes à une vitesse de 5 km/h (vitesse moyenne de marche d'un humain), il devra pouvoir éviter les obstacles et retrouver sa cible.
 

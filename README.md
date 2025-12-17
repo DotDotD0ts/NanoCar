@@ -29,6 +29,7 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [ ] Chassis
     - [ ] Supports pour l'assemblage
     - [ ] Assemblage de la conception 3D
+- [-] Setup du wifi de la Jetson Nano
 - [ ] Fabrication
 - [ ] Assemblage
 

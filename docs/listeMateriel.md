@@ -8,7 +8,7 @@
 |4|Régulateur de courant|DFR0946|10.70 eur|1|10.70 eur|
 |5|Jetson Nano|Jetson Nano 4Gb|250 eur|1|250 eur|
 |6|Raspberry Pi Camera|Pi camera v2.1|15 eur|1|15 eur|
-|7|Wifi dongle|Adaptateur Wi-Fi TP-LINK Archer T2U Nano USB 2.0 600 MBit/s|10.83 eur|1|10.83 eur|
+|7|Wifi dongle|Clé Wi-Fi USB 2.0 RF Solutions, 802.11b, 802.11g, 802.11n|12.55 eur|1|12.55 eur|
 |8|Câble d'alimentation 5V4A| | |1| |
 |9|Connecteurs de batterie LiPo|Connecteur male + femelle| |1| |
 | |Total| | | | |

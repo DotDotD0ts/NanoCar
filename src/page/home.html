@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NanoCar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #2c3e50;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Le retour caméra */
+        #video-container {
+            margin-bottom: 20px;
+        }
+        img {
+            width: 100%;
+            max-width: 640px;
+            border: 5px solid #ecf0f1;
+            border-radius: 10px;
+        }
+
+        /* La croix directionnelle */
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            grid-template-rows: repeat(3, 80px);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            background-color: #e74c3c;
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            user-select: none; /* Empêche la sélection de texte sur mobile */
+            touch-action: manipulation; /* Améliore la réponse tactile */
+            box-shadow: 0 5px #c0392b;
+        }
+
+        .btn:active {
+            box-shadow: 0 2px #c0392b;
+            transform: translateY(3px);
+            background-color: #d62c1a;
+        }
+
+        /* Positionnement des boutons */
+        .up { grid-column: 2; grid-row: 1; }
+        .left { grid-column: 1; grid-row: 2; }
+        .down { grid-column: 2; grid-row: 2; }
+        .right { grid-column: 3; grid-row: 2; }
+        .mode { grid-column: 1/4; grid-row: 3; }
+        
+        /* Indicateur d'état */
+        #status {
+            margin-top: 15px;
+            font-size: 1.2em;
+            color: #f1c40f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>NanoCar</h1>
+
+    <div id="video-container">
+        <img src="{{ url_for('video_feed') }}" alt="Caméra">
+    </div>
+
+    <div class="controls" >
+        <button class="btn up" data-cmd="FORWARD">▲</button>
+        <button class="btn left" data-cmd="LEFT">◄</button>
+        <button class="btn down" data-cmd="BACKWARD">▼</button>
+        <button class="btn right" data-cmd="RIGHT">►</button>
+        <button class="btn mode" data-cmd="MODE">Change to Automatic</button>
+    </div>
+
+    <div id="status">En attente...</div>
+
+    <script>
+        // Fonction pour envoyer l'ordre au serveur Python
+        function sendCommand(action) {
+            document.getElementById('status').innerText = "Action : " + action;
+            
+            fetch('/command', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ action: action }),
+            })
+            .catch((error) => {
+                console.error('Error:', error)
+            });
+        }
+
+        const buttons = document.querySelectorAll('.btn')
+
+        // On gère la souris/clavier (PC) et le tactile (Smartphone)
+        buttons.forEach(btn => {
+            const command = btn.getAttribute('data-cmd')
+
+            // --- Événements Souris (PC) ---
+            btn.addEventListener('mousedown', () => sendCommand(command))
+            btn.addEventListener('mouseup', () => sendCommand('STOP'))
+
+            // --- Événements Tactiles (Mobile) ---
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault()
+                sendCommand(command)
+            });
+            btn.addEventListener('touchend', (e) => {
+                e.preventDefault()
+                sendCommand('STOP')
+            });
+
+        });
+
+        document.addEventListener('keydown', (e) => keyboardInput(e))
+        document.addEventListener('keyup', (e) => sendCommand('STOP'))
+
+        function keyboardInput(e) {
+            e.preventDefault()
+            switch (e.key) {
+                case "ArrowUp":
+                    sendCommand("FORWARD")
+                    break
+                case "ArrowDown":
+                    sendCommand("BACKWARD")
+                    break
+                case "ArrowLeft":
+                    sendCommand("LEFT")
+                    break
+                case "ArrowRight": 
+                    sendCommand("RIGHT")
+                    break
+                case "Enter": 
+                    sendCommand("MODE")
+                    break
+            }
+        }
+    </script>
+</body>
+</html>
