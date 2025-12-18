@@ -14,7 +14,7 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [-] Commande du matériel
 - [-] WBS (a mettre au propre)
 - [x] Mise en place du Gantt
-- [-] Budget
+- [-] Budget (a mettre au propre)
 
 **Réalisation physique**
 - [x] Réflexion sur la partie direction du véhicule (une bille a l'avant et direction avec un differentiel de rotation dans les roues arrieres)
@@ -39,7 +39,7 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] Serveur flask
     - [x] Implémentation des commandes
 - [x] Création de l'interface utilisateur
-- [ ] Mise en place du flux vidéo
+- [x] Mise en place du flux vidéo
 - [ ] Mise en place des contrôles manuels
 - [ ] Intégration d'un modèle open source de reconnaissance d'objet
     - [ ] check: https://github.com/nithin-aikkattumadathil/Live-Image-processing-on-Jetson-Nano-Developer-Kit
