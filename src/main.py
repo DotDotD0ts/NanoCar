@@ -23,4 +23,4 @@ def hello_world():
     return "<p>Hello World!</p>"
 
 if __name__ == "__main__":
-    app.run(port=3000)
+    app.run(host="10.42.0.2",port=3000)
