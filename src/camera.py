@@ -1,6 +1,6 @@
 import cv2
 
-cam = cv2.VideoCapture("nvarguscamerasrc ! nvvidconv ! video/x-raw, width=1920, height=1080, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink", cv2.CAP_GSTREAMER)
+cam = cv2.VideoCapture("nvarguscamerasrc ! nvvidconv ! video/x-raw, width=1280, height=720, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink", cv2.CAP_GSTREAMER)
 
 def generateFrames():
     while True:
