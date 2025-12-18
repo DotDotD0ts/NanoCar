@@ -129,21 +129,25 @@
         document.addEventListener('keyup', (e) => sendCommand('STOP'))
 
         function keyboardInput(e) {
-            e.preventDefault()
             switch (e.key) {
                 case "ArrowUp":
+                    e.preventDefault()
                     sendCommand("FORWARD")
                     break
                 case "ArrowDown":
+                    e.preventDefault()
                     sendCommand("BACKWARD")
                     break
                 case "ArrowLeft":
+                    e.preventDefault()
                     sendCommand("LEFT")
                     break
                 case "ArrowRight": 
+                    e.preventDefault()
                     sendCommand("RIGHT")
                     break
                 case "Enter": 
+                    e.preventDefault()
                     sendCommand("MODE")
                     break
             }
