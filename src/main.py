@@ -1,18 +1,19 @@
-from flask import Flask, request
+from flask import Flask, request, Response
 from command import execCommand
-import cv2
+from camera import generateFrames
 
 app = Flask(__name__)
-cam = cv2.VideoCapture(0)
 
 @app.route("/")
 def home():
     content = "Page not found"
     with open('./page/home.html') as file:
         content = file.read()
-        ret, frame = cam.read()
-        cv2.imshow('Camera', frame)
     return content
+
+@app.route('/video_feed')
+def videoFeed():
+    return Response(generateFrames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route("/command", methods=["POST"])
 def command():
@@ -22,8 +23,8 @@ def command():
     return "";
 
 @app.route("/hello")
-def hello_world():
+def helloWorld():
     return "<p>Hello World!</p>"
 
 if __name__ == "__main__":
-    app.run(host="10.42.0.2",port=3000)
+    app.run(host="10.42.0.2", port=3000, threaded=True)
