@@ -34,8 +34,11 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [ ] Assemblage
 
 **Réalisation logiciel**
-- [ ] Mise en place d'un websocket sur la jetson nano
-- [ ] Création de l'interface utilisateur
+- [x] Ajout d'une connexion ssh pour un accès simple à la Jetson Nano
+- [x] Mise en place d'un serveur sur la jetson nano
+    - [x] Serveur flask
+    - [x] Implémentation des commandes
+- [x] Création de l'interface utilisateur
 - [ ] Mise en place du flux vidéo
 - [ ] Mise en place des contrôles manuels
 - [ ] Intégration d'un modèle open source de reconnaissance d'objet
