@@ -2,8 +2,8 @@ import cv2
 
 cam = cv2.VideoCapture(0, cv2.CAP_V4L2)
 
-cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+cam.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 def generateFrames():
     while True:
