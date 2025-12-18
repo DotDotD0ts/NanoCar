@@ -23,12 +23,12 @@ def gstreamer_pipeline(
             framerate,
             flip_method,
             display_width,
-            display_height,
+            display_height
         )
     )
 
 print("Initialisation GStreamer...")
-cam = cv2.VideoCapture(gstreamer_pipeline(flip_method=0), cv2.CAP_GSTREAMER)
+cam = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
 
 if not cam.isOpened():
     print("ERREUR: Impossible d'ouvrir la caméra avec GStreamer")
