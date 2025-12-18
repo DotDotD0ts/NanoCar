@@ -1,6 +1,5 @@
 from flask import Flask, request
 from command import execCommand
-import cv2
 
 app = Flask(__name__)
 
@@ -13,7 +12,7 @@ def home():
 
 @app.route("/command", methods=["POST"])
 def command():
-    action = request.get_json()['action']
+    action: str = request.get_json()['action']
     print(action)
     execCommand(action)
     return "";

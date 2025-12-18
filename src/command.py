@@ -1,4 +1,9 @@
+lastCommand: str = "STOP"
+
 def execCommand(action: str):
+    global lastCommand
+    if lastCommand == action:
+        return
     if action == "STOP":
         print("STOP command not implemented")
     elif action == "LEFT":
@@ -13,3 +18,4 @@ def execCommand(action: str):
         print("MODE command not implemented")
     else:
         print("Unknown command: ", action)
+    lastCommand = action
