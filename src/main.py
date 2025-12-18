@@ -11,7 +11,7 @@ def home():
         content = file.read()
     return content
 
-@app.route('/video_feed')
+@app.route('/videoFeed')
 def videoFeed():
     return Response(generateFrames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
