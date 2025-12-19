@@ -27,7 +27,7 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] Regulateur
     - [ ] Roue avant
     - [ ] Chassis
-    - [ ] Supports pour l'assemblage
+    - [ ] Supports pour l'assemblage (batterie, caméra, moteurs, régulateur)
     - [ ] Assemblage de la conception 3D
 - [-] Setup du wifi de la Jetson Nano
 - [ ] Fabrication
@@ -40,9 +40,15 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] Implémentation des commandes
 - [x] Création de l'interface utilisateur
 - [x] Mise en place du flux vidéo
-- [ ] Mise en place des contrôles manuels
+- [x] Controle des moteurs
 - [ ] Intégration d'un modèle open source de reconnaissance d'objet
     - [ ] check: https://github.com/nithin-aikkattumadathil/Live-Image-processing-on-Jetson-Nano-Developer-Kit
+
+**Intégration** (Une fois l'assemblage fini)
+- [ ] Paramétrage de l'accéleration / décéleration / marche arrière
+- [ ] Différentiel des moteurs pour la direction
+- [ ] Controle automatique (input de direction en fonction de la position de la cible)
+- [ ] Mode recherche de cible si aucune cible dans le visuel
 
 **Livrable**
 - [ ] Rédaction d'une documentation utilisateur 
