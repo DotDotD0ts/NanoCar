@@ -1,7 +1,7 @@
 import serial
 
 SERIAL_PORT = "/dev/ttyTHS1"
-BAUD_RATE = 38400
+BAUD_RATE = 9600
 
 driverPin = 8
 lastCommand: str = "STOP"
@@ -36,8 +36,8 @@ def execCommand(action: str):
     elif action == "RIGHT":
         print("RIGHT command not implemented")
     elif action == "FORWARD":
-        driveMotor(1, 1)
-        driveMotor(2, 1)
+        driveMotor(1, 10)
+        driveMotor(2, 10)
     elif action == "BACKWARD":
         print("BACKWARD command not implemented")
     elif action == "MODE":
