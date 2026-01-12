@@ -25,9 +25,11 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] Driver
     - [x] Raspberry camera
     - [x] Regulateur
+    - [x] Roue
+    - [x] Chassis
     - [ ] Roue avant
-    - [ ] Chassis
-    - [ ] Supports pour l'assemblage (batterie, caméra, moteurs, régulateur)
+    - [ ] Supports pour l'assemblage (batterie, caméra, moteurs)
+    - [ ] Persage des trous de vis (fixation composants)
     - [ ] Assemblage de la conception 3D
 - [-] Setup du wifi de la Jetson Nano
 - [ ] Fabrication
