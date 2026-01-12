@@ -30,7 +30,7 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [ ] Roue avant
     - [ ] Supports pour l'assemblage (batterie, caméra, moteurs)
     - [ ] Persage des trous de vis (fixation composants)
-    - [ ] Assemblage de la conception 3D
+    - [-] Assemblage de la conception 3D
 - [-] Setup du wifi de la Jetson Nano
 - [ ] Fabrication
 - [ ] Assemblage
