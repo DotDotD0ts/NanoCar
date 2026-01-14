@@ -23,33 +23,37 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] LiPo
     - [x] Moteur
     - [x] Driver
-    - [x] Raspberry camera
+    - [x] Camera
     - [x] Regulateur
     - [x] Roue
     - [x] Chassis
     - [ ] Roue avant
-    - [ ] Supports pour l'assemblage (batterie, caméra, moteurs)
-    - [ ] Persage des trous de vis (fixation composants)
-    - [-] Assemblage de la conception 3D
-- [-] Setup du wifi de la Jetson Nano
-- [ ] Fabrication
-- [ ] Assemblage
+    - [x] Supports pour l'assemblage
+        - [x] Batterie
+        - [x] Moteurs
+        - [x] Caméra
+    - [x] Persage des trous de vis (fixation composants)
+    - [-] Assemblage 3D
+- [x] Fabrication
+- [x] Assemblage
+- [x] Branchements
 
 **Réalisation logiciel**
+- [-] Setup du wifi de la Jetson Nano
 - [x] Ajout d'une connexion ssh pour un accès simple à la Jetson Nano
 - [x] Mise en place d'un serveur sur la jetson nano
     - [x] Serveur flask
     - [x] Implémentation des commandes
-- [x] Création de l'interface utilisateur
+- [-] Création de l'interface utilisateur
 - [x] Mise en place du flux vidéo
 - [x] Controle des moteurs
+- [-] Control manuel du véhicule
+    - [ ] Différentiel des moteurs pour la direction
+    - [ ] Paramétrage de l'accéleration / décéleration
 - [ ] Intégration d'un modèle open source de reconnaissance d'objet
     - [ ] check: https://github.com/nithin-aikkattumadathil/Live-Image-processing-on-Jetson-Nano-Developer-Kit
-
-**Intégration** (Une fois l'assemblage fini)
-- [ ] Paramétrage de l'accéleration / décéleration / marche arrière
-- [ ] Différentiel des moteurs pour la direction
-- [ ] Controle automatique (input de direction en fonction de la position de la cible)
+    - [ ] check: modeles dans opencv
+- [ ] Control autonome du véhicule
 - [ ] Mode recherche de cible si aucune cible dans le visuel
 
 **Livrable**
