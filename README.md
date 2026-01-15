@@ -11,14 +11,14 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] Analyse fonctionnelle
     - [x] Planning prévisionnel
     - [ ] Diagramme fast
-- [-] Commande du matériel
+- [x] Commande du matériel
 - [-] WBS (a mettre au propre)
 - [x] Mise en place du Gantt
 - [-] Budget (a mettre au propre)
 
 **Réalisation physique**
 - [x] Réflexion sur la partie direction du véhicule (une bille a l'avant et direction avec un differentiel de rotation dans les roues arrieres)
-- [-] Conception 3D
+- [x] Conception 3D
     - [x] Jetson nano
     - [x] LiPo
     - [x] Moteur
@@ -27,13 +27,13 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] Regulateur
     - [x] Roue
     - [x] Chassis
-    - [ ] Roue avant
+    - [x] Roue avant
     - [x] Supports pour l'assemblage
         - [x] Batterie
         - [x] Moteurs
         - [x] Caméra
     - [x] Persage des trous de vis (fixation composants)
-    - [-] Assemblage 3D
+    - [x] Assemblage 3D
 - [x] Fabrication
 - [x] Assemblage
 - [x] Branchements
@@ -44,17 +44,21 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [x] Mise en place d'un serveur sur la jetson nano
     - [x] Serveur flask
     - [x] Implémentation des commandes
-- [-] Création de l'interface utilisateur
+- [x] Création de l'interface utilisateur
 - [x] Mise en place du flux vidéo
 - [x] Controle des moteurs
-- [-] Control manuel du véhicule
-    - [ ] Différentiel des moteurs pour la direction
-    - [ ] Paramétrage de l'accéleration / décéleration
+- [x] Control manuel du véhicule
+    - [x] Différentiel des moteurs pour la direction
+    - [x] Paramétrage de l'accéleration / décéleration
 - [ ] Intégration d'un modèle open source de reconnaissance d'objet
     - [ ] check: https://github.com/nithin-aikkattumadathil/Live-Image-processing-on-Jetson-Nano-Developer-Kit
     - [ ] check: modeles dans opencv
 - [ ] Control autonome du véhicule
 - [ ] Mode recherche de cible si aucune cible dans le visuel
+
+**User experience**
+- [ ] Send current speed from controler to ui for initialization
+- [ ] Rework the movement acceleration and deceleration (smooth both)
 
 **Livrable**
 - [ ] Rédaction d'une documentation utilisateur 

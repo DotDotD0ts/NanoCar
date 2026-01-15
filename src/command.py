@@ -5,6 +5,9 @@ BAUD_RATE = 9600
 
 driverPin = 8
 lastCommand: str = "STOP"
+accel = 10
+speedA = 0
+speedB = 0
 
 ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
 
@@ -25,23 +28,38 @@ def driveMotor(id: int, power: int):
         print("Erreur communication moteur: ", e)
 
 def execCommand(action: str):
-    global lastCommand
-    if lastCommand == action:
+    global lastCommand, speedA, speedB, accel
+    if action == lastCommand:
         return
     if action == "STOP":
-        driveMotor(1, 0)
-        driveMotor(2, 0)
+        speedA = 0
+        speedB = 0
     elif action == "LEFT":
-        print("LEFT command not implemented")
+        speedB += accel
     elif action == "RIGHT":
-        print("RIGHT command not implemented")
+        speedA += accel
     elif action == "FORWARD":
-        driveMotor(1, 10)
-        driveMotor(2, 10)
+        speedA += accel
+        speedB += accel
     elif action == "BACKWARD":
-        print("BACKWARD command not implemented")
+        speedA -= accel
+        speedB -= accel
+    elif action == "SLEFT":
+        speedB -= accel
+    elif action == "SRIGHT":
+        speedA -= accel
+    elif action == "SFORWARD":
+        speedA -= accel
+        speedB -= accel
+    elif action == "SBACKWARD":
+        speedA += accel
+        speedB += accel
     elif action == "MODE":
         print("MODE command not implemented")
+    elif action.startswith("SPEED"):
+        accel = int(action.lstrip("SPEED"))
     else:
         print("Unknown command: ", action)
+    driveMotor(1, speedA)
+    driveMotor(2, speedB)
     lastCommand = action
