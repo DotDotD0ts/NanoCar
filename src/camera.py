@@ -1,24 +1,24 @@
 import cv2
-import main.py
+import globalVar
 from command import driveMotor
 
-WIDTH = 1280
-HEIGHT = 720
-CENTER_X = FRAME_WIDTH // 2
-DEAD_ZONE = 160
-TARGET_AREA = 120000 
-AREA_TOLERANCE = 20000
-TRACKING_SPEED = 40 
-TURN_SPEED = 50
+WIDTH = 640
+HEIGHT = 480
+CENTER_X = WIDTH // 2
+DEAD_ZONE = 80
+TARGET_AREA = 30000
+AREA_TOLERANCE = 5000
+TRACKING_SPEED = 20 
+TURN_SPEED = 20
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-cam = cv2.VideoCapture("nvarguscamerasrc ! nvvidconv ! video/x-raw, width=1280, height=720, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink", cv2.CAP_GSTREAMER)
+cam = cv2.VideoCapture("nvarguscamerasrc ! nvvidconv ! video/x-raw, width=640, height=480, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink", cv2.CAP_GSTREAMER)
 
 def generateFrames():
     while True:
         success, frame = cam.read()
         if success:
-            if main.automode:
+            if globalVar.automode:
                 frame = followTarget(frame)
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
@@ -38,8 +38,8 @@ def followTarget(frame):
 
     # Si aucun visage n'est détecté -> On s'arrête
     if len(faces) == 0:
-        drive_motor(1, 0)
-        drive_motor(2, 0)
+        driveMotor(1, 0)
+        driveMotor(2, 0)
         return frame
 
     # On prend le premier visage trouvé (le plus proche généralement)
@@ -60,14 +60,14 @@ def followTarget(frame):
     right_motor = 0
 
     # 3. GESTION DE LA DIRECTION (Gauche / Droite)
-    if face_center_x < (CENTER_X - DEAD_ZONE_X):
+    if face_center_x < (CENTER_X - DEAD_ZONE):
         # Visage à GAUCHE -> Tourner à GAUCHE
         command = "LEFT"
         left_motor = -TURN_SPEED
         right_motor = TURN_SPEED
         cv2.putText(frame, "Tourne GAUCHE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
 
-    elif face_center_x > (CENTER_X + DEAD_ZONE_X):
+    elif face_center_x > (CENTER_X + DEAD_ZONE):
         # Visage à DROITE -> Tourner à DROITE
         command = "RIGHT"
         left_motor = TURN_SPEED
@@ -99,7 +99,7 @@ def followTarget(frame):
             cv2.putText(frame, "CIBLE VERROUILLEE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
     # 4. Envoi aux moteurs
-    drive_motor(1, left_motor)
-    drive_motor(2, right_motor)
+    driveMotor(1, left_motor)
+    driveMotor(2, right_motor)
 
     return frame

@@ -1,5 +1,5 @@
 import serial
-import main
+import globalVar
 
 SERIAL_PORT = "/dev/ttyTHS1"
 BAUD_RATE = 9600
@@ -56,7 +56,7 @@ def execCommand(action: str):
         speedA += accel
         speedB += accel
     elif action == "MODE":
-        main.automode = !main.automode
+        globalVar.automode = not globalVar.automode
     elif action.startswith("SPEED"):
         accel = int(action.lstrip("SPEED"))
     else:
