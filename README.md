@@ -50,19 +50,22 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [x] Control manuel du véhicule
     - [x] Différentiel des moteurs pour la direction
     - [x] Paramétrage de l'accéleration / décéleration
-- [ ] Intégration d'un modèle open source de reconnaissance d'objet
-    - [ ] check: https://github.com/nithin-aikkattumadathil/Live-Image-processing-on-Jetson-Nano-Developer-Kit
-    - [ ] check: modeles dans opencv
-- [ ] Control autonome du véhicule
+- [x] Intégration d'un modèle open source de reconnaissance d'objet
+    - [x] Haar Cascade : reconnaissance de visage (CPU only) très lent, latence de plusieurs secondes + 2-3 FPS max
+    - [x] SSD Mobilenet v2 : https://github.com/dusty-nv/jetson-inference, detecte le corps humain (GPU accelerated) latence 1-2 secondes, 60 FPS
+- [x] Control autonome du véhicule
+- [-] Esquive d'obstacles
 - [ ] Mode recherche de cible si aucune cible dans le visuel
 
 **Problèmes**
-- [ ] Méthode Haar Cascade pour reconaissance de visage trop lente (2-3 fps)
-- [ ] Support caméra n'a pas d'angle, les visages ne sont reconnu que s'ils sont au niveau du sol
+- [x] Méthode Haar Cascade pour reconaissance de visage trop lente (2-3 fps)
+- [x] Support caméra n'a pas d'angle, les visages ne sont reconnu que s'ils sont au niveau du sol
 
 **User experience**
-- [ ] Send current speed from controler to ui for initialization
-- [ ] Rework the movement acceleration and deceleration (smooth both)
+- [ ] Syncroniser le slider de speed avec le backend
+- [ ] Amélioration des controles du véhicules
+    - [ ] Avancer en tournant
+    - [ ] Accélération et décélération non linéaire
 
 **Livrable**
 - [ ] Rédaction d'une documentation utilisateur 
