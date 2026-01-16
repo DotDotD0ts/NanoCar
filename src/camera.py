@@ -25,8 +25,7 @@ CENTER_X = FRAME_WIDTH // 2
 DEAD_ZONE_X = 250
 TARGET_AREA = 400000
 AREA_TOLERANCE = 40000
-
-SPEED = 20
+OBSTACLE_MIN_AREA = 80000
 
 def generateFrames():
     while True:
@@ -47,14 +46,41 @@ def followTarget(frame):
     # 2. DÉTECTION GPU (C'est ici que la magie opère)
     detections = net.Detect(img_cuda)
 
-    # 3. Recherche de "PERSONNE" (ClassID 1 pour MobileNet)
     target = None
-    
+    obstacle = None
+
     for d in detections:
         # ClassID 1 = Personne (dans le dataset COCO utilisé par mobilenet)
-        if d.ClassID == 1:
-            target = d
-            break # On prend la première personne trouvée
+        if d.ClassID == globalVar.target_class_id:
+            if target is None or d.Area > target.Area:
+                target = d
+        else:
+            if d.Area > OBSTACLE_MIN_AREA:
+                if obstacle is None or d.Area > obstacle.Area:
+                    obstacle = d
+
+    if obstacle is not None:
+        obs_x = obstacle.Center[0]
+        
+        # Si l'obstacle est au milieu de l'écran (+/- 300px)
+        if (CENTER_X - 300) < obs_x < (CENTER_X + 300):
+            # Récupération du nom de l'obstacle pour affichage
+            obs_name = net.GetClassDesc(obstacle.ClassID)
+            status_text = f"DODGE: {obs_name}"
+            
+            # Dessin Obstacle (Rouge)
+            l, t, r, b = int(obstacle.Left), int(obstacle.Top), int(obstacle.Right), int(obstacle.Bottom)
+            cv2.rectangle(frame, (l, t), (r, b), (0, 0, 255), 3)
+            
+            # Esquive
+            if obs_x > CENTER_X:
+                command = "LEFT"
+            else:
+                command = "RIGHT"
+                
+            execCommand(command)
+            cv2.putText(frame, f"{status_text} -> {command}", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+            return frame # On quitte ici, sécurité maximale
 
     # Si pas de personne trouvée
     if target is None:

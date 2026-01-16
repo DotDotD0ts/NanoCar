@@ -6,7 +6,6 @@ BAUD_RATE = 9600
 
 driverPin = 8
 lastCommand: str = "STOP"
-accel = 10
 speedA = 0
 speedB = 0
 
@@ -29,36 +28,38 @@ def driveMotor(id: int, power: int):
         print("Erreur communication moteur: ", e)
 
 def execCommand(action: str):
-    global lastCommand, speedA, speedB, accel
+    global lastCommand, speedA, speedB
     if action == lastCommand:
         return
     if action == "STOP":
         speedA = 0
         speedB = 0
     elif action == "LEFT":
-        speedB += accel
+        speedA = 0
+        speedB = globalVar.speed
     elif action == "RIGHT":
-        speedA += accel
+        speedA = globalVar.speed
+        speedB = 0
     elif action == "FORWARD":
-        speedA += accel
-        speedB += accel
+        speedA = globalVar.speed
+        speedB = globalVar.speed
     elif action == "BACKWARD":
-        speedA -= accel
-        speedB -= accel
-    elif action == "SLEFT":
-        speedB -= accel
-    elif action == "SRIGHT":
-        speedA -= accel
-    elif action == "SFORWARD":
-        speedA -= accel
-        speedB -= accel
-    elif action == "SBACKWARD":
-        speedA += accel
-        speedB += accel
+        speedA = -globalVar.speed
+        speedB = -globalVar.speed
+#    elif action == "SLEFT":
+#        speedB -= globalVar.speed
+#    elif action == "SRIGHT":
+#        speedA -= globalVar.speed
+#    elif action == "SFORWARD":
+#        speedA -= globalVar.speed
+#        speedB -= globalVar.speed
+#    elif action == "SBACKWARD":
+#        speedA += globalVar.speed
+#        speedB += globalVar.speed
     elif action == "MODE":
         globalVar.automode = not globalVar.automode
     elif action.startswith("SPEED"):
-        accel = int(action.lstrip("SPEED"))
+        globalVar.speed = int(action.lstrip("SPEED"))
     else:
         print("Unknown command: ", action)
     driveMotor(1, speedA)
