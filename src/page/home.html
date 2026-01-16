@@ -66,6 +66,29 @@
             font-size: 1.2em;
             color: #f1c40f;
         }
+
+	.slider-container {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+            background: #333;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        input[type=range] {
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+        }
+
+        #speed-display {
+            font-weight: bold;
+            color: #f1c40f;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -83,10 +106,24 @@
         <button class="btn right" data-cmd="RIGHT">►</button>
         <button class="btn mode" data-cmd="MODE">Change to Automatic</button>
     </div>
+    <div class="slider-container">
+        <label for="speedRange">Vitesse : <span id="speed-display">10</span> %</label>
+        <br><br>
+        <input type="range" min="1" max="100" value="10" id="speed">
+    </div>
 
     <div id="status">En attente...</div>
 
     <script>
+	const inputs = {
+	    forward: "FORWARD",
+	    backward: "BACKWARD",
+	    left: "LEFT",
+	    right: "RIGHT",
+	    speed: "SPEED",
+	    stop: "STOP"
+	}
+
         // Fonction pour envoyer l'ordre au serveur Python
         function sendCommand(action) {
             document.getElementById('status').innerText = "Action : " + action;
@@ -125,32 +162,61 @@
 
         });
 
-        document.addEventListener('keydown', (e) => keyboardInput(e))
-        document.addEventListener('keyup', (e) => sendCommand('STOP'))
+	const speedSlider = document.getElementById('speed')
+	const speedDisplay = document.getElementById('speed-display')
 
-        function keyboardInput(e) {
-            switch (e.key) {
-                case "ArrowUp":
-                    e.preventDefault()
-                    sendCommand("FORWARD")
-                    break
-                case "ArrowDown":
-                    e.preventDefault()
-                    sendCommand("BACKWARD")
-                    break
-                case "ArrowLeft":
-                    e.preventDefault()
-                    sendCommand("LEFT")
-                    break
-                case "ArrowRight": 
-                    e.preventDefault()
-                    sendCommand("RIGHT")
-                    break
-                case "Enter": 
-                    e.preventDefault()
-                    sendCommand("MODE")
-                    break
-            }
+	speedSlider.oninput = function() {
+	    speedDisplay.innerHTML = this.value
+	    sendCommand(inputs.speed + this.value)
+	}
+
+        document.addEventListener('keydown', (e) => keyboardInputDown(e))
+        document.addEventListener('keyup', (e) => keyboardInputUp(e))
+
+        function keyboardInputDown(e) {
+	    if (e.key == "ArrowUp") {
+	        e.preventDefault()
+	        sendCommand(inputs.forward)
+	    }
+	    if (e.key == "ArrowDown") {
+	        e.preventDefault()
+	        sendCommand(inputs.backward)
+	    }
+	    if (e.key == "ArrowLeft") {
+	        e.preventDefault()
+	        sendCommand(inputs.left)
+	    }
+	    if (e.key == "ArrowRight") {
+	        e.preventDefault()
+	        sendCommand(inputs.right)
+	    }
+	    if (e.key == " ") {
+		e.preventDefault()
+		sendCommand(inputs.stop)
+	    }
+	    if (e.key == "Enter") {
+	        e.preventDefault()
+	        sendCommand(inputs.mode)
+	    }
+        }
+
+        function keyboardInputUp(e) {
+	    if (e.key == "ArrowUp") {
+	        e.preventDefault()
+	        sendCommand("S" + inputs.forward)
+	    }
+	    if (e.key == "ArrowDown") {
+	        e.preventDefault()
+	        sendCommand("S" + inputs.backward)
+	    }
+	    if (e.key == "ArrowLeft") {
+	        e.preventDefault()
+	        sendCommand("S" + inputs.left)
+	    }
+	    if (e.key == "ArrowRight") {
+	        e.preventDefault()
+	        sendCommand("S" + inputs.right)
+	    }
         }
     </script>
 </body>
