@@ -1,4 +1,5 @@
 import serial
+import main
 
 SERIAL_PORT = "/dev/ttyTHS1"
 BAUD_RATE = 9600
@@ -25,7 +26,7 @@ def driveMotor(id: int, power: int):
         print("Erreur communication moteur: ", e)
 
 def execCommand(action: str):
-    global lastCommand
+    global lastCommand, automode
     if lastCommand == action:
         return
     if action == "STOP":
@@ -41,7 +42,7 @@ def execCommand(action: str):
     elif action == "BACKWARD":
         print("BACKWARD command not implemented")
     elif action == "MODE":
-        print("MODE command not implemented")
+        main.automode = !main.automode
     else:
         print("Unknown command: ", action)
     lastCommand = action

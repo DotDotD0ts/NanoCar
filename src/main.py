@@ -4,6 +4,8 @@ from camera import generateFrames
 
 app = Flask(__name__)
 
+automode = False
+
 @app.route("/")
 def home():
     content = "Page not found"
