@@ -2,10 +2,17 @@ import jetson_inference
 import jetson_utils
 import cv2
 import globalVar
-from command import driveMotor
+from command import execCommand
 
 # --- CONFIGURATION CAMERA ---
-cam = cv2.VideoCapture("nvarguscamerasrc ! nvvidconv ! video/x-raw, width=1280, height=720, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink", cv2.CAP_GSTREAMER)
+cam = cv2.VideoCapture(
+    "nvarguscamerasrc sensor-mode=4 ! "
+    "nvvidconv ! "
+    "video/x-raw, width=1280, height=720, format=BGRx ! "
+    "videoconvert ! "
+    "video/x-raw, format=BGR ! appsink",
+    cv2.CAP_GSTREAMER
+)
 
 # --- CONFIGURATION GPU ---
 # On charge le réseau de neurones sur le GPU (SSD MobileNet V2)
@@ -13,14 +20,13 @@ cam = cv2.VideoCapture("nvarguscamerasrc ! nvvidconv ! video/x-raw, width=1280, 
 net = jetson_inference.detectNet("ssd-mobilenet-v2", threshold=0.5)
 
 # --- CONFIGURATION ROBOT ---
-FRAME_WIDTH = 640
+FRAME_WIDTH = 1280
 CENTER_X = FRAME_WIDTH // 2
-DEAD_ZONE_X = 80
-TARGET_AREA = 30000
-AREA_TOLERANCE = 10000
+DEAD_ZONE_X = 250
+TARGET_AREA = 400000
+AREA_TOLERANCE = 40000
 
-TRACKING_SPEED = 40
-TURN_SPEED = 50
+SPEED = 20
 
 def generateFrames():
     while True:
@@ -52,8 +58,6 @@ def followTarget(frame):
 
     # Si pas de personne trouvée
     if target is None:
-        driveMotor(1, 0)
-        driveMotor(2, 0)
         cv2.putText(frame, "RECHERCHE CIBLE...", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
         return frame
 
@@ -73,39 +77,21 @@ def followTarget(frame):
     cv2.circle(frame, (x, y), 5, (0, 0, 255), -1)
     
     # --- LOGIQUE DE PILOTAGE ---
-    command = "STOP"
-    left_motor = 0
-    right_motor = 0
-
     # Gestion Direction
+    command = "STOP"
     if x < (CENTER_X - DEAD_ZONE_X):
-        command = "GAUCHE"
-        left_motor = -TURN_SPEED
-        right_motor = TURN_SPEED
+        command = "LEFT"
     elif x > (CENTER_X + DEAD_ZONE_X):
-        command = "DROITE"
-        left_motor = TURN_SPEED
-        right_motor = -TURN_SPEED
+        command = "RIGHT"
     else:
         # Gestion Distance
         if area < (TARGET_AREA - AREA_TOLERANCE):
-            command = "AVANCE"
-            left_motor = TRACKING_SPEED
-            right_motor = TRACKING_SPEED
+            command = "FORWARD"
         elif area > (TARGET_AREA + AREA_TOLERANCE):
-            command = "RECULE"
-            left_motor = -TRACKING_SPEED
-            right_motor = -TRACKING_SPEED
-        else:
-            command = "STOP (Verrouille)"
-            left_motor = 0
-            right_motor = 0
+            command = "BACKWARD"
+    execCommand(command)
 
     # Affichage Infos
     cv2.putText(frame, f"{command} (Conf: {int(target.Confidence*100)}%)", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-
-    # Envoi Moteurs
-    driveMotor(1, left_motor)
-    driveMotor(2, right_motor)
 
     return frame
