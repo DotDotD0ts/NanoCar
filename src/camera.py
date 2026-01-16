@@ -1,4 +1,5 @@
 import cv2
+import jetson_inference
 import globalVar
 from command import driveMotor
 
