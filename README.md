@@ -56,6 +56,10 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [ ] Control autonome du véhicule
 - [ ] Mode recherche de cible si aucune cible dans le visuel
 
+**Problèmes**
+- [ ] Méthode Haar Cascade pour reconaissance de visage trop lente (2-3 fps)
+- [ ] Support caméra n'a pas d'angle, les visages ne sont reconnu que s'ils sont au niveau du sol
+
 **User experience**
 - [ ] Send current speed from controler to ui for initialization
 - [ ] Rework the movement acceleration and deceleration (smooth both)

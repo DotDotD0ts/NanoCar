@@ -1,105 +1,99 @@
-import cv2
 import jetson_inference
+import jetson_utils
+import cv2
 import globalVar
 from command import driveMotor
 
-WIDTH = 640
-HEIGHT = 480
-CENTER_X = WIDTH // 2
-DEAD_ZONE = 80
-TARGET_AREA = 30000
-AREA_TOLERANCE = 5000
-TRACKING_SPEED = 20 
-TURN_SPEED = 20
+# --- CONFIGURATION GPU ---
+# On charge le réseau de neurones sur le GPU (SSD MobileNet V2)
+# threshold=0.5 signifie qu'on veut être sûr à 50% que c'est bien une personne
+net = jetson.inference.detectNet("ssd-mobilenet-v2", threshold=0.5)
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-cam = cv2.VideoCapture("nvarguscamerasrc ! nvvidconv ! video/x-raw, width=640, height=480, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink", cv2.CAP_GSTREAMER)
+# --- CONFIGURATION ROBOT ---
+FRAME_WIDTH = 640  # On peut rester en 640 pour la vitesse max
+CENTER_X = FRAME_WIDTH // 2
+DEAD_ZONE_X = 80
+TARGET_AREA = 30000  # Surface moyenne d'une personne à 1m
+AREA_TOLERANCE = 10000
 
-def generateFrames():
-    while True:
-        success, frame = cam.read()
-        if success:
-            if globalVar.automode:
-                frame = followTarget(frame)
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            yield (b'--frame\r\n' +
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+TRACKING_SPEED = 40
+TURN_SPEED = 50
 
-def followTarget(frame):
-    """
-    Détecte un visage et envoie les commandes aux moteurs.
-    Retourne l'image avec le rectangle dessiné.
-    """
-    # 1. Conversion en niveaux de gris (plus rapide pour la détection)
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+def follow_target(frame, face_cascade=None):
+    # Note: 'face_cascade' ne sert plus à rien ici, mais on garde l'argument
+    # pour ne pas casser l'appel dans app.py
+    
+    # 1. Conversion OpenCV (Numpy) -> CUDA (GPU)
+    # OpenCV utilise BGR, Jetson Inference préfère RGBA
+    img_cuda = jetson.utils.cudaFromNumpy(frame)
 
-    # 2. Détection des visages
-    faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+    # 2. DÉTECTION GPU (C'est ici que la magie opère)
+    detections = net.Detect(img_cuda)
 
-    # Si aucun visage n'est détecté -> On s'arrête
-    if len(faces) == 0:
+    # 3. Recherche de "PERSONNE" (ClassID 1 pour MobileNet)
+    target = None
+    
+    for d in detections:
+        # ClassID 1 = Personne (dans le dataset COCO utilisé par mobilenet)
+        if d.ClassID == 1:
+            target = d
+            break # On prend la première personne trouvée
+
+    # Si pas de personne trouvée
+    if target is None:
         driveMotor(1, 0)
         driveMotor(2, 0)
+        cv2.putText(frame, "RECHERCHE CIBLE...", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
         return frame
 
-    # On prend le premier visage trouvé (le plus proche généralement)
-    (x, y, w, h) = faces[0]
+    # --- SI PERSONNE TROUVÉE ---
     
-    # Calcul du centre du visage
-    face_center_x = x + (w // 2)
-    face_area = w * h
-
-    # Dessin du rectangle et du centre sur l'image (Retour visuel)
-    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-    cv2.circle(frame, (face_center_x, y + h//2), 5, (0, 0, 255), -1)
-
-    # --- LOGIQUE D'ASSERVISSEMENT ---
+    # Récupération des coordonnées
+    # L'objet 'd' contient directement le Centre et l'Aire !
+    x, y = int(target.Center[0]), int(target.Center[1])
+    w, h = int(target.Width), int(target.Height)
+    area = w * h
     
+    # Dessin sur l'image (Retour visuel)
+    # On dessine le rectangle autour de la personne
+    left, top = int(target.Left), int(target.Top)
+    right, bottom = int(target.Right), int(target.Bottom)
+    cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
+    cv2.circle(frame, (x, y), 5, (0, 0, 255), -1)
+    
+    # --- LOGIQUE DE PILOTAGE ---
     command = "STOP"
     left_motor = 0
     right_motor = 0
 
-    # 3. GESTION DE LA DIRECTION (Gauche / Droite)
-    if face_center_x < (CENTER_X - DEAD_ZONE):
-        # Visage à GAUCHE -> Tourner à GAUCHE
-        command = "LEFT"
+    # Gestion Direction
+    if x < (CENTER_X - DEAD_ZONE_X):
+        command = "GAUCHE"
         left_motor = -TURN_SPEED
         right_motor = TURN_SPEED
-        cv2.putText(frame, "Tourne GAUCHE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
-
-    elif face_center_x > (CENTER_X + DEAD_ZONE):
-        # Visage à DROITE -> Tourner à DROITE
-        command = "RIGHT"
+    elif x > (CENTER_X + DEAD_ZONE_X):
+        command = "DROITE"
         left_motor = TURN_SPEED
         right_motor = -TURN_SPEED
-        cv2.putText(frame, "Tourne DROITE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
-
     else:
-        # Visage au CENTRE -> Gérer l'AVANCE / RECUL
-        
-        if face_area < (TARGET_AREA - AREA_TOLERANCE):
-            # Visage trop petit = Trop loin -> AVANCER
-            command = "FORWARD"
+        # Gestion Distance
+        if area < (TARGET_AREA - AREA_TOLERANCE):
+            command = "AVANCE"
             left_motor = TRACKING_SPEED
             right_motor = TRACKING_SPEED
-            cv2.putText(frame, "AVANCE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-            
-        elif face_area > (TARGET_AREA + AREA_TOLERANCE):
-            # Visage trop gros = Trop près -> RECULER (ou STOP)
-            command = "BACK"
+        elif area > (TARGET_AREA + AREA_TOLERANCE):
+            command = "RECULE"
             left_motor = -TRACKING_SPEED
             right_motor = -TRACKING_SPEED
-            cv2.putText(frame, "RECULE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-            
         else:
-            # Visage à la bonne distance -> STOP
-            command = "STOP"
+            command = "STOP (Verrouille)"
             left_motor = 0
             right_motor = 0
-            cv2.putText(frame, "CIBLE VERROUILLEE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
-    # 4. Envoi aux moteurs
+    # Affichage Infos
+    cv2.putText(frame, f"{command} (Conf: {int(target.Confidence*100)}%)", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+    # Envoi Moteurs
     driveMotor(1, left_motor)
     driveMotor(2, right_motor)
 
