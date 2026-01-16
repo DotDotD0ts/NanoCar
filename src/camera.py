@@ -4,28 +4,39 @@ import cv2
 import globalVar
 from command import driveMotor
 
+# --- CONFIGURATION CAMERA ---
+cam = cv2.VideoCapture("nvarguscamerasrc ! nvvidconv ! video/x-raw, width=1280, height=720, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink", cv2.CAP_GSTREAMER)
+
 # --- CONFIGURATION GPU ---
 # On charge le réseau de neurones sur le GPU (SSD MobileNet V2)
 # threshold=0.5 signifie qu'on veut être sûr à 50% que c'est bien une personne
-net = jetson.inference.detectNet("ssd-mobilenet-v2", threshold=0.5)
+net = jetson_inference.detectNet("ssd-mobilenet-v2", threshold=0.5)
 
 # --- CONFIGURATION ROBOT ---
-FRAME_WIDTH = 640  # On peut rester en 640 pour la vitesse max
+FRAME_WIDTH = 640
 CENTER_X = FRAME_WIDTH // 2
 DEAD_ZONE_X = 80
-TARGET_AREA = 30000  # Surface moyenne d'une personne à 1m
+TARGET_AREA = 30000
 AREA_TOLERANCE = 10000
 
 TRACKING_SPEED = 40
 TURN_SPEED = 50
 
-def follow_target(frame, face_cascade=None):
-    # Note: 'face_cascade' ne sert plus à rien ici, mais on garde l'argument
-    # pour ne pas casser l'appel dans app.py
-    
+def generateFrames():
+    while True:
+        success, frame = cam.read()
+        if success:
+            if globalVar.automode:
+                frame = followTarget(frame)
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n' +
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+def followTarget(frame):
     # 1. Conversion OpenCV (Numpy) -> CUDA (GPU)
     # OpenCV utilise BGR, Jetson Inference préfère RGBA
-    img_cuda = jetson.utils.cudaFromNumpy(frame)
+    img_cuda = jetson_utils.cudaFromNumpy(frame)
 
     # 2. DÉTECTION GPU (C'est ici que la magie opère)
     detections = net.Detect(img_cuda)
