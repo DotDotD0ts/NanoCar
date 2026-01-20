@@ -39,7 +39,7 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [x] Branchements
 
 **Réalisation logiciel**
-- [-] Setup du wifi de la Jetson Nano
+- [x] Setup du wifi de la Jetson Nano (10.42.0.1:3000)
 - [x] Ajout d'une connexion ssh pour un accès simple à la Jetson Nano
 - [x] Mise en place d'un serveur sur la jetson nano
     - [x] Serveur flask
@@ -55,7 +55,8 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] SSD Mobilenet v2 : https://github.com/dusty-nv/jetson-inference, detecte le corps humain (GPU accelerated) latence 1-2 secondes, 60 FPS
 - [x] Control autonome du véhicule
 - [-] Esquive d'obstacles
-- [ ] Mode recherche de cible si aucune cible dans le visuel (Ajout d'un boulean pour activer ou non)
+- [x] Mode recherche de cible si aucune cible dans le visuel (Ajout d'un boulean pour activer ou non)
+- [ ] Selection d'une cible
 - [ ] Une petite dance ?
 
 **Problèmes**
@@ -67,7 +68,7 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [ ] Amélioration des controles du véhicules
     - [ ] Avancer en tournant
     - [ ] Accélération et décélération non linéaire
-- [ ] Retravailler les boutons de l'UI pour l'activation des modes
+- [ ] Réduire la taille de la cible pour que le robot reste plus loin
 
 **Livrable**
 - [ ] Rédaction d'une documentation utilisateur 
