@@ -58,7 +58,9 @@
         .left { grid-column: 1; grid-row: 2; }
         .down { grid-column: 2; grid-row: 2; }
         .right { grid-column: 3; grid-row: 2; }
-        .mode { grid-column: 1/4; grid-row: 3; }
+        .mode { grid-column: 1; grid-row: 3; }
+        .stop { grid-column: 2; grid-row: 3; }
+        .search { grid-column: 3; grid-row: 3; }
         
         /* Indicateur d'état */
         #status {
@@ -104,12 +106,14 @@
         <button class="btn left" data-cmd="LEFT">◄</button>
         <button class="btn down" data-cmd="BACKWARD">▼</button>
         <button class="btn right" data-cmd="RIGHT">►</button>
-        <button class="btn mode" data-cmd="MODE">Change to Automatic</button>
+        <button class="btn mode" data-cmd="MODE">MODE</button>
+        <button class="btn stop" data-cmd="STOP">STOP</button>
+        <button class="btn search" data-cmd="SEARCH">SEARCH</button>
     </div>
     <div class="slider-container">
-        <label for="speedRange">Vitesse : <span id="speed-display">10</span> %</label>
+        <label for="speedRange">Vitesse : <span id="speed-display">50</span> %</label>
         <br><br>
-        <input type="range" min="1" max="100" value="10" id="speed">
+        <input type="range" min="1" max="100" value="50" id="speed">
     </div>
 
     <div id="status">En attente...</div>
@@ -121,7 +125,9 @@
 	    left: "LEFT",
 	    right: "RIGHT",
 	    speed: "SPEED",
-	    stop: "STOP"
+	    stop: "STOP",
+	    mode: "MODE",
+	    search: "SEARCH"
 	}
 
         // Fonction pour envoyer l'ordre au serveur Python
@@ -148,7 +154,6 @@
 
             // --- Événements Souris (PC) ---
             btn.addEventListener('mousedown', () => sendCommand(command))
-            btn.addEventListener('mouseup', () => sendCommand('STOP'))
 
             // --- Événements Tactiles (Mobile) ---
             btn.addEventListener('touchstart', (e) => {

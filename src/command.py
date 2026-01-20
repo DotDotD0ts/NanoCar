@@ -35,11 +35,11 @@ def execCommand(action: str):
         speedA = 0
         speedB = 0
     elif action == "LEFT":
-        speedA = 0
-        speedB = globalVar.speed
+        speedA = -globalVar.turnSpeed
+        speedB = globalVar.turnSpeed
     elif action == "RIGHT":
-        speedA = globalVar.speed
-        speedB = 0
+        speedA = globalVar.turnSpeed
+        speedB = -globalVar.turnSpeed
     elif action == "FORWARD":
         speedA = globalVar.speed
         speedB = globalVar.speed
@@ -58,6 +58,8 @@ def execCommand(action: str):
 #        speedB += globalVar.speed
     elif action == "MODE":
         globalVar.automode = not globalVar.automode
+    elif action == "SEARCH":
+        globalVar.search = not globalVar.search
     elif action.startswith("SPEED"):
         globalVar.speed = int(action.lstrip("SPEED"))
     else:
