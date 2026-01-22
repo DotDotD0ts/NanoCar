@@ -63,7 +63,7 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [x] Support caméra n'a pas d'angle, les visages ne sont reconnu que s'ils sont au niveau du sol
 
 **User experience**
-- [ ] Syncroniser le slider de speed avec le backend
+- [x] Syncroniser le slider de speed avec le backend
 - [ ] Amélioration des controles du véhicules
     - [ ] Avancer en tournant
     - [ ] Accélération et décélération non linéaire
