@@ -7,10 +7,10 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 
 **Management**
 - [x] Définition du besoin
-- [-] Création du cahier des charges
+- [x] Création du cahier des charges
     - [x] Analyse fonctionnelle
     - [x] Planning prévisionnel
-    - [ ] Diagramme fast
+    - [x] Diagramme fast
 - [x] Commande du matériel
 - [-] WBS (a mettre au propre)
 - [x] Mise en place du Gantt
@@ -56,7 +56,6 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [x] Control autonome du véhicule
 - [-] Esquive d'obstacles
 - [x] Mode recherche de cible si aucune cible dans le visuel (Ajout d'un boulean pour activer ou non)
-- [ ] Selection d'une cible
 - [ ] Une petite dance ?
 
 **Problèmes**
@@ -68,20 +67,9 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [ ] Amélioration des controles du véhicules
     - [ ] Avancer en tournant
     - [ ] Accélération et décélération non linéaire
-- [ ] Réduire la taille de la cible pour que le robot reste plus loin
+- [x] Réduire la taille de la cible pour que le robot reste plus loin
 
 **Livrable**
 - [ ] Rédaction d'une documentation utilisateur 
 - [ ] Rédaction d'une documentation technique permettant de refaire le projet de zéro
-
-## Questions
-
-- Est ce que j'utilise mon budget ? 
-Non, budget CESI.
-- Est ce que je peux utiliser une Lipo pour alimenter la jetson avec un régulateur de courant et les moteurs ? 
-Oui
-- Est ce que je fais une archi monolithe ? Est ce que je sépars le serveur web, et le soft de controle du véhicule ? 
-Monolithe (dire dans le rapport technique que séparer les services est préferable)
-- Est ce que le schéma électronique semble correct ? 
-Oui
 
