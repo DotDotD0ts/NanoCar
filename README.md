@@ -54,8 +54,8 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] Haar Cascade : reconnaissance de visage (CPU only) très lent, latence de plusieurs secondes + 2-3 FPS max
     - [x] SSD Mobilenet v2 : https://github.com/dusty-nv/jetson-inference, detecte le corps humain (GPU accelerated) latence 1-2 secondes, 60 FPS
 - [x] Control autonome du véhicule
-- [-] Esquive d'obstacles
 - [x] Mode recherche de cible si aucune cible dans le visuel (Ajout d'un boulean pour activer ou non)
+- [-] Esquive d'obstacles
 - [ ] Une petite dance ?
 
 **Problèmes**
@@ -64,9 +64,6 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 
 **User experience**
 - [x] Syncroniser le slider de speed avec le backend
-- [ ] Amélioration des controles du véhicules
-    - [ ] Avancer en tournant
-    - [ ] Accélération et décélération non linéaire
 - [x] Réduire la taille de la cible pour que le robot reste plus loin
 
 **Livrable**
