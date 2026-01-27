@@ -55,8 +55,8 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] SSD Mobilenet v2 : https://github.com/dusty-nv/jetson-inference, detecte le corps humain (GPU accelerated) latence 1-2 secondes, 60 FPS
 - [x] Control autonome du véhicule
 - [x] Mode recherche de cible si aucune cible dans le visuel (Ajout d'un boulean pour activer ou non)
+- [x] Démarage automatique du serveur (crontab)
 - [-] Esquive d'obstacles
-- [ ] Une petite dance ?
 
 **Problèmes**
 - [x] Méthode Haar Cascade pour reconaissance de visage trop lente (2-3 fps)
