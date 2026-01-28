@@ -1,7 +1,10 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
+import globalVar
 from command import execCommand
 from camera import generateFrames
+from os import chdir
 
+chdir("/home/nano/nanocar/src/")
 app = Flask(__name__)
 
 automode = False
@@ -27,6 +30,10 @@ def command():
 @app.route("/hello")
 def helloWorld():
     return "<p>Hello World!</p>"
+
+@app.route("/currentSpeed")
+def getCurrentSpeed():
+    return jsonify({'speed': globalVar.speed})
 
 if __name__ == "__main__":
     app.run(host="10.42.0.1", port=3000, threaded=True)
