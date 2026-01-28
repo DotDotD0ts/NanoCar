@@ -56,7 +56,7 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [x] Control autonome du véhicule
 - [x] Mode recherche de cible si aucune cible dans le visuel (Ajout d'un boulean pour activer ou non)
 - [x] Démarage automatique du serveur (crontab)
-- [-] Esquive d'obstacles
+- [x] Esquive d'obstacles
 
 **Problèmes**
 - [x] Méthode Haar Cascade pour reconaissance de visage trop lente (2-3 fps)
@@ -69,4 +69,3 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 **Livrable**
 - [ ] Rédaction d'une documentation utilisateur 
 - [ ] Rédaction d'une documentation technique permettant de refaire le projet de zéro
-
