@@ -34,7 +34,7 @@
             justify-content: center;
             margin-top: 20px;
         }
-        
+
         .btn {
             background-color: #e74c3c;
             border: none;
@@ -95,7 +95,7 @@
 </head>
 <body>
 
-    <h1>NanoCar2</h1>
+    <h1>NanoCar</h1>
 
     <div id="video-container">
         <img src="/videoFeed" alt="Caméra">
@@ -111,14 +111,14 @@
         <button class="btn search" data-cmd="SEARCH">SEARCH</button>
     </div>
     <div class="slider-container">
-        <label for="speedRange">Vitesse : <span id="speed-display">50</span> %</label>
+        <label for="speedRange">Vitesse : <span id="speed-display"></span> %</label>
         <br><br>
         <input type="range" min="1" max="100" value="50" id="speed">
     </div>
 
     <div id="status">En attente...</div>
 
-    <script>
+<script>
 	const inputs = {
 	    forward: "FORWARD",
 	    backward: "BACKWARD",
@@ -129,6 +129,15 @@
 	    mode: "MODE",
 	    search: "SEARCH"
 	}
+
+    async function getCurrentSpeed() {
+        const response = await fetch('/currentSpeed')
+        const curSpeed = await response.json()
+        document.getElementById('speed').value = curSpeed.speed
+        document.getElementById('speed-display').innerText = curSpeed.speed
+    }
+
+    window.onload = function () {getCurrentSpeed()}
 
         // Fonction pour envoyer l'ordre au serveur Python
         function sendCommand(action) {
