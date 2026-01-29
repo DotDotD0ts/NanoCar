@@ -12,9 +12,9 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
     - [x] Planning prévisionnel
     - [x] Diagramme fast
 - [x] Commande du matériel
-- [-] WBS (a mettre au propre)
+- [x] WBS (a mettre au propre)
 - [x] Mise en place du Gantt
-- [-] Budget (a mettre au propre)
+- [x] Budget (a mettre au propre)
 
 **Réalisation physique**
 - [x] Réflexion sur la partie direction du véhicule (une bille a l'avant et direction avec un differentiel de rotation dans les roues arrieres)
@@ -67,5 +67,11 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [x] Réduire la taille de la cible pour que le robot reste plus loin
 
 **Livrable**
+- [ ] Création d'un poster de présentation du projet
 - [ ] Rédaction d'une documentation utilisateur 
 - [ ] Rédaction d'une documentation technique permettant de refaire le projet de zéro
+
+## info livrable
+
+- 41,47g de plastique pour les impressions des supports. cout : 1,04eur
+- 57585,835mm2 soit 575,85cm2 soit 0,057585m2 surface de planche

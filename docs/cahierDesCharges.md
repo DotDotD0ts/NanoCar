@@ -49,9 +49,9 @@ Le véhicule devra pouvoir suivre une cible pendant au moins 5 minutes à une vi
 
 ## 4. Contraintes du projet
 
-Le projet est financé par le CESI avec un budget maximum de 150 eur. Certains des matériaux (comme la caméra pi, les roues, le bois, ...) sont déjà présent au CESI et ne seront pas dédui de ce budget. La carte Jetson Nano sera fourni par mes soins et récupéré à la fin du projet.
+Le projet est financé par le CESI avec un budget maximum de 150 eur. Certains des matériaux (comme la caméra pi, les roues, le bois, ...) sont déjà présent au CESI. La carte Jetson Nano sera fourni par mes soins et récupéré à la fin du projet.
 
-Dans un premier temps, le chassis du véhicule sera fait à partir d'une planche en bois découpé à l'aide de la CNC.
+Dans un premier temps, le chassis du véhicule sera fait à partir d'une planche en bois découpé à l'aide de la découpeuse laser.
 
 Les commandes devront être effectué avant le mercredi 17 décembre pour prendre en compte le temps de traitement et de livraison de celles-ci.
 Enfin, le projet devra être rendu le 30 janvier 2026, jour de la soutenance.
