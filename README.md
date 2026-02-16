@@ -67,8 +67,8 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 - [x] Réduire la taille de la cible pour que le robot reste plus loin
 
 **Livrable**
-- [ ] Création d'un poster de présentation du projet
-- [ ] Rédaction d'une documentation utilisateur 
+- [x] Création d'un poster de présentation du projet
+- [x] Rédaction d'une documentation utilisateur 
 - [ ] Rédaction d'une documentation technique permettant de refaire le projet de zéro
 
 ## info livrable
