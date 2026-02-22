@@ -73,6 +73,8 @@ Le prototype sera développé en Python pour un dévelopement rapide et fonction
 
 ## Documentations
 
+Cette documentation a été réalisé sur l'outil fabmanager comme demandé par l'école. Pour voir le rendu correct de cette doc, veillez-vous rendre sur [ce lien](https://cesi-fabmanager.duckdns.org/#!/projects/nanocar)
+
 # NanoCar
 
 ![Illustration](https://fabmanager-cesi.duckdns.org/uploads/project_image/26/project_image.jpg)
